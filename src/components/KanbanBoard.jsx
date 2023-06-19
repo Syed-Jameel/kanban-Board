@@ -148,7 +148,7 @@ function KanbanBoard() {
   const [columns, setColumns] = useState(columnsFromBackend);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-6">
       <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>
         {Object.entries(columns).map(([columnId, column], index) => {
           return (
@@ -163,6 +163,7 @@ function KanbanBoard() {
                       padding: 16,
                       width: "100%",
                       minHeight: 500,
+                      margin: "5px 0",
                       borderRadius: "0.5rem",
                     }}>
                     {/* Header */}

@@ -103,63 +103,64 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
 
   return (
     <>
-      {windowWidth >= 1140 && (
-        <div className={` ${isSidebarOpen ? "w-72" : "w-0 "} h-full relative duration-300 border-r-2  bg-white`}>
-          <div className="flex gap-x-4 h-16 items-center border-b-2 px-7">
-            <img src={colorFilter} className={`cursor-pointer duration-500 ${open && "rotate-[360deg]"}`} />
-            <h1 className={`text-customBlack corigin-left font-medium text-xl duration-200 font-custom ${!isSidebarOpen && "scale-0"}`}>Project M. </h1>
-            <div className={`absolute cursor-pointer right-6  w-5 h-5 text-chevronColor`} onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-              {isSidebarOpen ? <ChevronDoubleLeftIcon /> : <ChevronDoubleRightIcon />}
-            </div>
-          </div>
-          <div className="p-3  ">
-            <ul className="pt-0 p-2">
-              {menus.map((menu, index) => (
-                <li key={index} className={`flex rounded-md p-2 cursor-pointer hover:bg-navigationHover text-gray-300 text-sm items-center gap-x-4`}>
-                  <span className="w-5 h-5 text-[#787486]">{menu.icon}</span>
-                  <span className={`${!isSidebarOpen && "hidden"} origin-left duration-200 text-cutomTextColor`}>{menu.title}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="p-2">
-            <hr />
-          </div>
-
-          <div className={`${!isSidebarOpen && "hidden"} p-3`}>
-            <div className="p-2 flex items-center justify-between">
-              <p className="text-cutomTextColor text-sm font font-bold">MY PROJECTS</p>
-              <img src={addBtn} className="cursor-pointer" />
-            </div>
-            <ul className="pt-0 p-2">
-              {Pojects.map((project, index) => (
-                <li key={index} className={`${project.isSelected ? "bg-[#5030E5] bg-opacity-10" : "hover:bg-navigationHover"} flex rounded-md p-2 my-2 cursor-pointer  text-gray-300 text-sm items-center gap-x-4 `}>
-                  <div className={`w-2 h-2 rounded-full ${project.dotColor}`}></div>
-                  <span className={`${!isSidebarOpen && "hidden"} origin-left duration-200 text-cutomTextColor`}>{project.title}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className={`${!isSidebarOpen && "hidden"} p-5 relative `}>
-            <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 w-[66px] h-[66px] bg-union rounded-full flex items-center justify-center">
-              <div className="custom-container rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-[#FBCB18]">
-                  <path d="M12 .75a8.25 8.25 0 00-4.135 15.39c.686.398 1.115 1.008 1.134 1.623a.75.75 0 00.577.706c.352.083.71.148 1.074.195.323.041.6-.218.6-.544v-4.661a6.714 6.714 0 01-.937-.171.75.75 0 11.374-1.453 5.261 5.261 0 002.626 0 .75.75 0 11.374 1.452 6.712 6.712 0 01-.937.172v4.66c0 .327.277.586.6.545.364-.047.722-.112 1.074-.195a.75.75 0 00.577-.706c.02-.615.448-1.225 1.134-1.623A8.25 8.25 0 0012 .75z" />
-                  <path fillRule="evenodd" d="M9.013 19.9a.75.75 0 01.877-.597 11.319 11.319 0 004.22 0 .75.75 0 11.28 1.473 12.819 12.819 0 01-4.78 0 .75.75 0 01-.597-.876zM9.754 22.344a.75.75 0 01.824-.668 13.682 13.682 0 002.844 0 .75.75 0 11.156 1.492 15.156 15.156 0 01-3.156 0 .75.75 0 01-.668-.824z" clipRule="evenodd" />
-                </svg>
-              </div>
-            </div>
-
-            <div className="p-4 text-center bg-union rounded-lg">
-              <p className="text-sm font-medium leading-4 tracking-normal pb-2 mt-6">Thoughts Time</p>
-              <p className=" text-cutomTextColor text-xs font-normal leading-4 tracking-normal text-center">We don’t have any notice for you, till then you can share your thoughts with your peers.</p>
-              <input type="text" className="placeholder-[#000] text-sm mt-4 font-semibold leading-4 tracking-normal  w-[100%] placeholder-center rounded-md border-0 text-center focus:ring-1 focus:ring-gray-400" placeholder="Write a message" />
-            </div>
+      {/* {windowWidth >= 1140 && ( */}
+      <div className={` ${isSidebarOpen ? "w-72" : "w-20 "} duration-300 border-r-2  bg-white`}>
+        <div className="flex gap-x-4 h-16 items-center justify-between border-b-2 px-7">
+          <img src={colorFilter} className={`cursor-pointer duration-500 ${open && "rotate-[360deg]"} block md:hidden`} />
+          <img src={colorFilter} onClick={() => setIsSidebarOpen(!isSidebarOpen)} className={`cursor-pointer duration-500 ${open && "rotate-[360deg]"} hidden md:block`} />
+          <h1 className={`text-[14px] sm:text-[16px] text-customBlack corigin-left font-medium text-xl duration-200 font-custom ${!isSidebarOpen && "scale-0"}`}>Project M. </h1>
+          <div className={`cursor-pointer right-6  w-5 h-5 text-chevronColor`} onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+            {isSidebarOpen ? <ChevronDoubleLeftIcon /> : <ChevronDoubleRightIcon />}
           </div>
         </div>
-      )}
+        <div className="p-3  ">
+          <ul className="pt-0 p-2">
+            {menus.map((menu, index) => (
+              <li key={index} title={menu.title} className={`flex rounded-md p-2 cursor-pointer hover:bg-navigationHover text-gray-300 text-sm items-center gap-x-4`}>
+                <span className={`w-5 h-5 text-[#787486]`}>{menu.icon}</span>
+                <span className={`${!isSidebarOpen && "hidden"} origin-left duration-200 text-cutomTextColor`}>{menu.title}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="px-2 py-0">
+          <hr />
+        </div>
+
+        <div className={`${!isSidebarOpen && "hidden"} px-3`}>
+          <div className="p-2 flex items-center justify-between">
+            <p className="text-cutomTextColor text-sm font font-bold">MY PROJECTS</p>
+            <img src={addBtn} className="cursor-pointer" />
+          </div>
+          <ul className="pt-0 p-2">
+            {Pojects.map((project, index) => (
+              <li key={index} className={`${project.isSelected ? "bg-[#5030E5] bg-opacity-10" : "hover:bg-navigationHover"} flex rounded-md p-2 my-2 cursor-pointer  text-gray-300 text-sm items-center gap-x-4 `}>
+                <div className={`w-2 h-2 rounded-full ${project.dotColor}`}></div>
+                <span className={`${!isSidebarOpen && "hidden"} origin-left duration-200 text-cutomTextColor`}>{project.title}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className={`${!isSidebarOpen && "hidden"} p-5 relative `}>
+          <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-[66px] h-[66px] bg-union rounded-full flex items-center justify-center">
+            <div className="custom-container rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-[#FBCB18]">
+                <path d="M12 .75a8.25 8.25 0 00-4.135 15.39c.686.398 1.115 1.008 1.134 1.623a.75.75 0 00.577.706c.352.083.71.148 1.074.195.323.041.6-.218.6-.544v-4.661a6.714 6.714 0 01-.937-.171.75.75 0 11.374-1.453 5.261 5.261 0 002.626 0 .75.75 0 11.374 1.452 6.712 6.712 0 01-.937.172v4.66c0 .327.277.586.6.545.364-.047.722-.112 1.074-.195a.75.75 0 00.577-.706c.02-.615.448-1.225 1.134-1.623A8.25 8.25 0 0012 .75z" />
+                <path fillRule="evenodd" d="M9.013 19.9a.75.75 0 01.877-.597 11.319 11.319 0 004.22 0 .75.75 0 11.28 1.473 12.819 12.819 0 01-4.78 0 .75.75 0 01-.597-.876zM9.754 22.344a.75.75 0 01.824-.668 13.682 13.682 0 002.844 0 .75.75 0 11.156 1.492 15.156 15.156 0 01-3.156 0 .75.75 0 01-.668-.824z" clipRule="evenodd" />
+              </svg>
+            </div>
+          </div>
+
+          <div className="p-4 text-center bg-union rounded-lg">
+            <p className="text-sm font-medium leading-4 tracking-normal pb-2 mt-6">Thoughts Time</p>
+            <p className=" text-cutomTextColor text-xs font-normal leading-4 tracking-normal text-center">We don’t have any notice for you, till then you can share your thoughts with your peers.</p>
+            <input type="text" className="placeholder-[#000] text-sm mt-4 font-semibold leading-4 tracking-normal  w-[100%] placeholder-center rounded-md border-0 text-center focus:ring-1 focus:ring-gray-400" placeholder="Write a message" />
+          </div>
+        </div>
+      </div>
+      {/* )} */}
     </>
   );
 };
