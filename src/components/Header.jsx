@@ -6,12 +6,6 @@ import messageQuestionIcon from "../assets/message-question.png";
 import notification from "../assets/notification.png";
 import userImage from "../assets/user.png";
 
-const userNavigation = [
-  { name: "Your Profile", href: "#" },
-  { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
-];
-
 const Header = () => {
   return (
     <>

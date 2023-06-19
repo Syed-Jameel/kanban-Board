@@ -75,7 +75,6 @@ const doneItemsFromBackend = [
       description: "",
       images: [mobileAppDesign],
       priority: ["Low", "Medium", "High"],
-      status: "Completed",
       comments: 12,
       files: 15,
     },
@@ -87,7 +86,6 @@ const doneItemsFromBackend = [
       description: "It just needs to adapt the UI from what you did before ",
       images: [],
       priority: ["Low", "Medium", "High"],
-      status: "Completed",
       comments: 12,
       files: 15,
     },
@@ -97,17 +95,14 @@ const doneItemsFromBackend = [
 const columnsFromBackend = {
   [uuidv4()]: {
     name: "To Do",
-    notifications: 4,
     items: toDoItemsFromBackend,
   },
   [uuidv4()]: {
     name: "In Progress",
-    notifications: 3,
     items: inProgressItemsFromBackend,
   },
   [uuidv4()]: {
     name: "Done",
-    notifications: 2,
     items: doneItemsFromBackend,
   },
 };
@@ -176,7 +171,7 @@ function KanbanBoard() {
                         <div className={`w-2 h-2 rounded-full ${column.name === "To Do" && "bg-[#5030E5]"} ${column.name === "In Progress" && "bg-[#FFA500]"}  ${column.name === "Done" && "bg-[#8BC48A]"}`}></div>
                         <p className=" text-[#0D062D] text-base mx-2 font-semibold leading-5 tracking-normal text-left">{column.name}</p>
                         <span className="bg-[#E0E0E0] font-medium rounded-full w-6 h-6  flex items-center justify-center">
-                          <span className="text-[#625F6D]">{column.notifications}</span>
+                          <span className="text-[#625F6D]">{column.items.length > 0 ? column.items.length : 0} </span>
                         </span>
                       </div>
 
@@ -205,8 +200,8 @@ function KanbanBoard() {
                                 }}>
                                 {/* {item.content} */}
                                 <div className="bg-[#FFFFFF] rounded-lg p-4 my-4">
-                                  <div className="flex items-center justify-between ">
-                                    <span className="bg-red-100 text-red-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">{item.content.title === "Research" || item.content.title === "Wireframes" ? item.content.priority[2] : item.content.priority[0]}</span>
+                                  <div className="flex items-center justify-between">
+                                    {column.name === "Done" ? <span className="bg-[#83C29D] bg-opacity-20 text-[#68B266] text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">Completed</span> : <span className="bg-red-100 text-red-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">{item.content.title === "Research" || item.content.title === "Wireframes" ? item.content.priority[2] : item.content.priority[0]}</span>}
                                     <span className="flex items-center justify-between">
                                       <div className="w-1 h-1 bg-black rounded-full"></div>
                                       <div className="w-1 h-1 bg-black rounded-full mx-1"></div>

@@ -12,7 +12,8 @@ function classNames(...classes) {
 }
 
 const Main = () => {
-  const [selected, setSelected] = useState();
+  const [filter, setFilter] = useState();
+  const [today, setToady] = useState();
   return (
     <div className="mx-auto max-w-full p-6  bg-white">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 ">
@@ -56,7 +57,7 @@ const Main = () => {
 
         <div className="flex items-center justify-center sm:justify-start">
           {/* Filter Dropdown start */}
-          <Listbox value={selected} onChange={setSelected}>
+          <Listbox value={filter} onChange={setFilter}>
             {({ open }) => (
               <>
                 <div className="relative mt-2">
@@ -65,7 +66,7 @@ const Main = () => {
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 text-[#787486]">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 01-.659 1.591l-5.432 5.432a2.25 2.25 0 00-.659 1.591v2.927a2.25 2.25 0 01-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 00-.659-1.591L3.659 7.409A2.25 2.25 0 013 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0112 3z" />
                       </svg>
-                      <span className="ml-2 block truncate text-[#787486] font-semibold">{selected ? selected : "Filter"}</span>
+                      <span className="ml-2 block truncate text-[#787486] font-semibold">{filter ? filter : "Filter"}</span>
                     </span>
                     <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
                       <ChevronDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -76,13 +77,13 @@ const Main = () => {
                     <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                       {["one", "two", "three"].map((item, index) => (
                         <Listbox.Option key={index} className={({ active }) => classNames(active ? "bg-indigo-600 text-white" : "text-gray-900", "relative cursor-default select-none py-2 pl-3 pr-9")} value={item}>
-                          {({ selected, active }) => (
+                          {({ filter, active }) => (
                             <>
                               <div className="flex items-center">
-                                <span className={classNames(selected ? "font-semibold" : "font-normal", "ml-3 block truncate")}>{item}</span>
+                                <span className={classNames(filter ? "font-semibold" : "font-normal", "ml-3 block truncate")}>{item}</span>
                               </div>
 
-                              {selected ? (
+                              {filter ? (
                                 <span className={classNames(active ? "text-white" : "text-indigo-600", "absolute inset-y-0 right-0 flex items-center pr-4")}>
                                   <CheckIcon className="h-5 w-5" aria-hidden="true" />
                                 </span>
@@ -99,7 +100,7 @@ const Main = () => {
           </Listbox>
           {/* Filter Dropdown end */}
           {/* Today Dropdown start */}
-          <Listbox value={selected} onChange={setSelected}>
+          <Listbox value={today} onChange={setToady}>
             {({ open }) => (
               <>
                 <div className="relative mt-2">
@@ -109,7 +110,7 @@ const Main = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
                       </svg>
 
-                      <span className="ml-2 block truncate text-[#787486] font-semibold">{selected ? selected : "Today"}</span>
+                      <span className="ml-2 block truncate text-[#787486] font-semibold">{today ? today : "Today"}</span>
                     </span>
                     <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
                       <ChevronDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -120,13 +121,13 @@ const Main = () => {
                     <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                       {["one", "two", "three"].map((item, index) => (
                         <Listbox.Option key={index} className={({ active }) => classNames(active ? "bg-indigo-600 text-white" : "text-gray-900", "relative cursor-default select-none py-2 pl-3 pr-9")} value={item}>
-                          {({ selected, active }) => (
+                          {({ today, active }) => (
                             <>
                               <div className="flex items-center">
-                                <span className={classNames(selected ? "font-semibold" : "font-normal", "ml-3 block truncate")}>{item}</span>
+                                <span className={classNames(today ? "font-semibold" : "font-normal", "ml-3 block truncate")}>{item}</span>
                               </div>
 
-                              {selected ? (
+                              {today ? (
                                 <span className={classNames(active ? "text-white" : "text-indigo-600", "absolute inset-y-0 right-0 flex items-center pr-4")}>
                                   <CheckIcon className="h-5 w-5" aria-hidden="true" />
                                 </span>
